@@ -131,9 +131,9 @@ ExternalVelocityLimitSelectorNode::ExternalVelocityLimitSelectorNode(
     "input/velocity_limit_clear_command_from_internal", rclcpp::QoS{10}.transient_local(),
     std::bind(&ExternalVelocityLimitSelectorNode::onVelocityLimitClearCommand, this, _1));
 
-  // Output
-  pub_external_velocity_limit_ =
-    this->create_publisher<VelocityLimit>("output/external_velocity_limit", 1);
+  // Output (transient_local so late subscribers still receive the last published limit)
+  pub_external_velocity_limit_ = this->create_publisher<VelocityLimit>(
+    "output/external_velocity_limit", rclcpp::QoS{1}.transient_local());
 
   pub_debug_string_ = this->create_publisher<StringStamped>("output/debug", 1);
 
