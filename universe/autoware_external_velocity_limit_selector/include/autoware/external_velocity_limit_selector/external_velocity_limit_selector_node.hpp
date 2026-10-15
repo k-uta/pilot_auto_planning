@@ -55,7 +55,7 @@ private:
   void publishVelocityLimit(const VelocityLimit & velocity_limit);
   void setVelocityLimitFromAPI(const VelocityLimit & velocity_limit);
   void setVelocityLimitFromInternal(const VelocityLimit & velocity_limit);
-  bool clearVelocityLimit(const std::string & sender);
+  void clearVelocityLimit(const std::string & sender);
   void updateVelocityLimit();
   void publishDebugString();
   VelocityLimit getCurrentVelocityLimit() { return hardest_limit_; }
